@@ -1,0 +1,100 @@
+/* App.css or PrivacyPage.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.max-w-2xl {
+  max-width: 40rem;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.rounded {
+  border-radius: 0.5rem;
+}
+
+.shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.text-gray-600 {
+  color: #718096;
+}
+
+.text-gray-500 {
+  color: #a0aec0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  border-color: #e2e8f0;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
+.list-inside {
+  padding-left: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-blue-600 {
+  color: #3182ce;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
