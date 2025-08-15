@@ -1,149 +1,104 @@
-// import React from "react";
-// import { Routes, Route, Navigate } from "react-router-dom";
+//src/App.js
+import React from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import AdminLayout from './admin/AdminLayout';
 
-// // Pages
-// import HomePage from "./pages/Home";
-// import AuthPage from "./pages/AuthPage";
-// import NotFound from "./pages/NotFound";
-// import DashboardLayout from "./pages/DashboardLayout";
-// import AdminDashboard from "./admin/AdminDashboard";
-// import Profile from "./pages/Profile";
-// import Settings from "./pages/Settings";
-// import Footer from "./components/Footer";
-// import FeedbackForm from "./components/FeedbackForm";
-// import VerifyEmail from "./pages/VerifyEmail";
-// import TwoFA from "./pages/TwoFA";
-// import ForgotPassword from "./pages/ForgotPassword";
-// import ResetPassword from "./pages/ResetPassword";
-// import TwoFactorAuth from "./pages/TwoFactorAuth"
+// Pages
+import HomePage from "./pages/Home";
+import AuthPage from "./pages/AuthPage";
+import NotFound from "./pages/NotFound";
+import DashboardLayout from "./pages/DashboardLayout";
+import AdminDashboard from "./admin/AdminDashboard";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Footer from "./components/Footer";
+import FeedbackForm from "./components/FeedbackForm";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import AdminLogin from "./admin/AdminLogin";
+// Admin Sections
+import Users from './admin/sections/Users';
+import Uploads from './admin/sections/Uploads';
+import Insights from './admin/sections/Insights';
 
-// // Helper to protect routes
-// const ProtectedRoute = ({ element: Component }) => {
-//   const token = localStorage.getItem("token");
-//   return token ? Component : <Navigate to="/login" />;
-// };
-
-// function App() {
-//   return (
-//     <div className="min-h-screen flex flex-col">
-//       <Routes>
-//         {/* 🌐 Home */}
-//         <Route path="/" element={<HomePage />} />
-
-//         {/* 🔐 Auth */}
-//         <Route path="/login" element={<AuthPage />} />
-//         {/* <Route path="/verify-email/:token" element={<VerifyEmail />} /> */}
-//         <Route path="/2fa" element={<TwoFA />} />
-//         <Route path="/forgot-password" element={<ForgotPassword />} />
-//         <Route path="/reset-password/:token" element={<ResetPassword />} />
-//         <Route path="/2fa" element={<TwoFactorAuth />} />
-
-//         {/* 📊 Dashboard & Admin (Protected) */}
-//         <Route path="/dashboard" element={<ProtectedRoute element={<DashboardLayout />} />} />
-//         <Route path="/admin" element={<ProtectedRoute element={<AdminDashboard />} />} />
-
-//         {/* 👤 User Settings */}
-//         <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
-//         <Route path="/settings" element={<ProtectedRoute element={<Settings />} />} />
-
-//         {/* 📬 Support */}
-//         <Route path="/support" element={<FeedbackForm />} />
-
-//         {/* 🚫 404 */}
-//         <Route path="*" element={<NotFound />} />
-//       </Routes>
-
-//       {/* 🧾 Footer on every page */}
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default App;
+// Optional Pages
+import VerifyEmail from "./pages/VerifyEmail";
+import TwoFactorSetup from "./pages/TwoFactorSetup";
+import TwoFactorPrompt from "./pages/TwoFactorPrompt";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import ResendVerification from "./pages/ResendVerification";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/privacy";
 
 
-  import React from "react";
-  import { Routes, Route } from "react-router-dom";
+// Route protection
+const ProtectedRoute = ({ element: Component }) => {
+  const token = localStorage.getItem("token");
+  return token ? Component : <Navigate to="/login" />;
+};
 
-  // Pages
-  import HomePage from "./pages/Home";
-  import AuthPage from "./pages/AuthPage";
-  import NotFound from "./pages/NotFound";
-  import DashboardLayout from "./pages/DashboardLayout";
-  import AdminDashboard from "./admin/AdminDashboard";
-  import Profile from "./pages/Profile";
-  import Settings from "./pages/Settings";
-  import Footer from "./components/Footer";
-  import FeedbackForm from "./components/FeedbackForm";
-  // import VerifyEmail from "./pages/VerifyEmail";
-  import TwoFA from "./pages/TwoFA";
-  import ForgotPassword from "./pages/ForgotPassword";
-  import ResetPassword from "./pages/ResetPassword";
-  import TwoFactorAuth from "./pages/TwoFactorAuth";
-  import ProtectedRoute from "./components/ProtectedRoute"; // adjust path as needed
+const ProtectedAdminRoute = ({ element: Component }) => {
+  const adminToken = localStorage.getItem("adminToken");
+  return adminToken ? Component : <Navigate to="/admin/login" />;
+};
 
-  function App() {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Routes>
-          {/* 🌐 Home */}
-          <Route path="/" element={<HomePage />} />
+function App() {
+  const location = useLocation();
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Routes>
+        {/* 🌐 Public Pages */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        {/*Terms*/}
+        <Route path="/terms" element={<TermsPage />} />
+        {/*Privacy*/}
+        <Route path="/privacy" element={<PrivacyPage />} />
+        {/* 🔐 Auth Pages */}
+        <Route path="/login" element={<AuthPage />} />
+        <Route path="/register" element={<AuthPage />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
+        <Route path="/2fa/setup" element={<ProtectedRoute element={<TwoFactorSetup />} />} />
+        <Route path="/2fa" element={<TwoFactorPrompt />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/resend-verification" element={<ResendVerification />} />
 
-          {/* 🔐 Auth */}
-          <Route path="/login" element={<AuthPage />} />
-          {/* <Route path="/verify-email/:token" element={<VerifyEmail />} /> */}
-          <Route path="/2fa" element={<TwoFA />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path="/2fa" element={<TwoFactorAuth />} />
+        {/* 📊 User Dashboard */}
+        <Route path="/dashboard" element={<ProtectedRoute element={<DashboardLayout />} />} />
+        {/* 👑 Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedAdminRoute element={<AdminLayout />} />
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="uploads" element={<Uploads />} />
+          <Route path="insights" element={<Insights />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="support" element={<FeedbackForm />} />
+          {/* Add more admin routes as needed */}
+        </Route>
 
-          {/* 📊 Dashboard & Admin (Protected) */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <DashboardLayout />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
+        {/* 👤 User Settings */}
+        <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+        <Route path="/settings" element={<ProtectedRoute element={<Settings />} />} />
 
-          {/* 👤 User Settings */}
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            }
-          />
+        {/* 📬 Support */}
+        <Route path="/support" element={<FeedbackForm />} />
+      
+        {/* 🚫 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {location.pathname === "/" && <Footer />}
+    </div>
+  );
+}
 
-          {/* 📬 Support */}
-          <Route path="/support" element={<FeedbackForm />} />
-
-          {/* 🚫 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-
-        {/* 🧾 Footer on every page */}
-        <Footer />
-      </div>
-    );
-  }
-
-  export default App;
+export default App;
