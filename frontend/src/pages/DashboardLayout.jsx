@@ -225,7 +225,7 @@ import ChartSection from "../components/ChartSection";
 import Chart3DSection from "../components/Chart3DSection";
 import InsightsSection from "../components/InsightsSection";
 import HistorySection from "../components/HistorySection";
-import api from "../utils/api";
+import {api} from "../utils/api";
 import toast from "react-hot-toast";
 
 function DashboardLayout() {

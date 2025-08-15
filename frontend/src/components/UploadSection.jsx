@@ -226,7 +226,7 @@
 
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import axios from "../utils/api";
+import {api} from "../utils/api";
 import Swal from "sweetalert2";
 
 const UploadSection = ({ setExcelColumns, setExcelRows, setFileId }) => {
@@ -243,7 +243,7 @@ const UploadSection = ({ setExcelColumns, setExcelRows, setFileId }) => {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      const res = await axios.post("/excel/upload", formData, {
+      const res = await api.post("/excel/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
