@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../api/axios";
+import {api} from "../../api/axios";
 
 function UploadHistory() {
   const [uploads, setUploads] = useState([]);
@@ -14,7 +14,7 @@ function UploadHistory() {
       try {
         setLoading(true);
         const endpoint = isAdmin ? "/admin/uploads" : "/admin/user/uploads";
-        const res = await axios.get(endpoint);
+        const res = await api.get(endpoint);
         setUploads(res.data.uploads || []);
         setLoading(false);
       } catch (err) {

@@ -57,7 +57,7 @@
 // export default AdminDashboard;
 
 import React, { useEffect, useState } from "react";
-import axios from "../api/axios"; // Adjust path if needed
+import {api} from "../api/axios"; // Adjust path if needed
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
@@ -68,7 +68,7 @@ export default function AdminDashboard() {
     const fetchStats = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/admin/dashboard");
+        const res = await api.get("/admin/dashboard");
         setStats(res.data);
         setLoading(false);
       } catch (err) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../api/axios";
+import {api} from "../api/axios";
 import authHeader from "../api/authHeader";
 
 function Profile() {
@@ -11,7 +11,7 @@ function Profile() {
     formData.append("profilePic", pic);
 
     try {
-      await axios.post("/upload/profile/upload-pic", formData, {
+      await api.post("/upload/profile/upload-pic", formData, {
         headers: {
           ...authHeader(),
           "Content-Type": "multipart/form-data",

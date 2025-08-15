@@ -1,6 +1,6 @@
 // src/pages/TwoFactorPrompt.jsx
 import { useState } from "react";
-import axios from "../utils/api";
+import {api} from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 const TwoFactorPrompt = () => {
@@ -10,7 +10,7 @@ const TwoFactorPrompt = () => {
 
   const handleVerify = async () => {
     try {
-      const res = await axios.post("/auth/2fa/verify", { token });
+      const res = await api.post("/auth/2fa/verify", { token });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/dashboard");

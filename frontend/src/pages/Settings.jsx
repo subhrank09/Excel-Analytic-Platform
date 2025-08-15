@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../api/axios";
+import {api} from "../api/axios";
 import authHeader from "../api/authHeader";
 
 function Settings() {
@@ -10,7 +10,7 @@ function Settings() {
 
   const updateProfile = async () => {
     try {
-      const res = await axios.put(
+      const res = await api.put(
         "/user/update",
         { name },
         { headers: authHeader() }

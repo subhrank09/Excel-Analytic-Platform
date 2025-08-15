@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../api/axios"; // Adjust path if needed
+import {api} from "../../api/axios"; // Adjust path if needed
 
 export default function Insights() {
   const [insights, setInsights] = useState(null);
@@ -10,7 +10,7 @@ export default function Insights() {
     const fetchInsights = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/admin/insights");
+        const res = await api.get("/admin/insights");
         setInsights(res.data); // Expecting an array of insights
         setLoading(false);
       } catch (err) {

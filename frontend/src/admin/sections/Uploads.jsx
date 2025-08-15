@@ -138,7 +138,7 @@
 // }
 
 import React, { useState, useEffect, useRef } from "react";
-import axios from "../../api/axios";
+import {api} from "../../api/axios";
 
 export default function Uploads() {
   const [file, setFile] = useState(null);
@@ -158,7 +158,7 @@ export default function Uploads() {
       try {
         setLoading(true);
         const endpoint = isAdmin ? "/admin/uploads" : "/admin/user/uploads";
-        const res = await axios.get(endpoint);
+        const res = await api.get(endpoint);
         setUploads(res.data.uploads || []);
         setLoading(false);
       } catch (err) {
@@ -189,7 +189,7 @@ export default function Uploads() {
       const formData = new FormData();
       formData.append("file", file);
 
-      await axios.post("/admin/uploads", formData, {
+      await api.post("/admin/uploads", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setSuccess("File uploaded successfully!");

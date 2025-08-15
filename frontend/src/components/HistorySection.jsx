@@ -182,7 +182,7 @@
 // export default HistorySection;
 
 import { useEffect, useState } from "react";
-import axios from "../api/axios";
+import {api} from "../api/axios";
 import authHeader from "../api/authHeader";
 import toast from "react-hot-toast";
 
@@ -194,7 +194,7 @@ function HistorySection() {
   const fetchFiles = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/excel/files", { headers: authHeader() });
+      const res = await api.get("/api/excel/files", { headers: authHeader() });
       setFiles(res.data.uploads.reverse());
     } catch (err) {
       toast.error("Error loading file history");
@@ -211,7 +211,7 @@ function HistorySection() {
   // Download Handler (FIXED: removed colon before id)
   const handleDownload = async (fileId, filename) => {
     try {
-      const response = await axios.get(`/api/excel/files/${fileId}/download`, {
+      const response = await api.get(`/api/excel/files/${fileId}/download`, {
         headers: authHeader(),
         responseType: 'blob',
       });
@@ -231,7 +231,7 @@ function HistorySection() {
   // Delete a single file (FIXED: correct endpoint)
   const deleteFile = async (fileId) => {
     try {
-      await axios.delete(`/api/excel/files/${fileId}`, { headers: authHeader() });
+      await api.delete(`/api/excel/files/${fileId}`, { headers: authHeader() });
       toast.success("File deleted!");
       fetchFiles();
     } catch (err) {
@@ -242,7 +242,7 @@ function HistorySection() {
   // Clear all history (UNCHANGED)
   const clearHistory = async () => {
     try {
-      await axios.delete("/api/excel/files/clear", { headers: authHeader() });
+      await api.delete("/api/excel/files/clear", { headers: authHeader() });
       toast.success("Upload history cleared!");
       fetchFiles();
     } catch (err) {

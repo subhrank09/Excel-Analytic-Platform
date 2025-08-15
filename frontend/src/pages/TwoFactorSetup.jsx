@@ -1,6 +1,6 @@
 // src/pages/TwoFactorSetup.jsx
 import { useEffect, useState } from "react";
-import axios from "../utils/api";
+import {api} from "../utils/api";
 
 const TwoFactorSetup = () => {
   const [qrCodeUrl, setQrCodeUrl] = useState("");
@@ -9,7 +9,7 @@ const TwoFactorSetup = () => {
   useEffect(() => {
     const fetchSecret = async () => {
       try {
-        const res = await axios.get("/auth/2fa/setup", {
+        const res = await api.get("/auth/2fa/setup", {
           headers: { Authorization: 'Bearer ${localStorage.getItem("token")}' },
         });
         setQrCodeUrl(res.data.qrCodeUrl);

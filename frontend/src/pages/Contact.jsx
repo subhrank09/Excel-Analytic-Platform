@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
-import axios from "../api/axios";
+import {api} from "../api/axios";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -17,7 +17,7 @@ const Contact = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.post("/contact", form);
+      await api.post("/contact", form);
       setSubmitted(true);
     } catch (err) {
       setError(err?.response?.data?.error || "Failed to send message.");

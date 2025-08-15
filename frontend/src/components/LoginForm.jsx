@@ -2,7 +2,7 @@
 import { useState } from "react";
 // import { FaGoogle } from "react-icons/fa";
 //import logo from "../assets/logo.png";
-import axios from "../utils/api";
+import {api} from "../utils/api";
 
 const LoginForm = ({ toggle }) => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const LoginForm = ({ toggle }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/login", { email, password });
+      const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data));
       alert("Login successful!");

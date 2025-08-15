@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-
-  baseURL: "/api", // use proxy for local dev
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

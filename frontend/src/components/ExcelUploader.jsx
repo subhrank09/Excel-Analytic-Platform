@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ExcelDropzone from "./ExcelDropzone";
-import axios from "axios";
+import {api} from "axios";
 
 function ExcelUploader() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,7 +19,7 @@ function ExcelUploader() {
     // Replace with your actual token retrieval logic
     const token = localStorage.getItem("token"); 
 
-    await axios.post("/api/excel/upload", formData, {
+    await api.post("/api/excel/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": `Bearer ${token}`,

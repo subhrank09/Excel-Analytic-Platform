@@ -1,7 +1,7 @@
 // src/components/RegisterForm.jsx
 import { useState } from "react";
 // import { FaGoogle } from "react-icons/fa";
-import axios from "../utils/api";
+import {api} from "../utils/api";
 // import { useGoogleLogin } from '@react-oauth/google';
 
 
@@ -42,7 +42,7 @@ const RegisterForm = ({ toggle }) => {
       return;
     }
     try {
-      const res = await axios.post("/auth/register", {
+      const res = await api.post("/auth/register", {
         name: fullName,
         email,
         password,

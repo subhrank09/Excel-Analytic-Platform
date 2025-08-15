@@ -38,7 +38,7 @@
 // export default InsightsSection;
 
 import { useState, useEffect } from "react";
-import axios from "../api/axios";
+import {api} from "../api/axios";
 import authHeader from "../api/authHeader";
 
 function InsightsSection({ insights, loading, onRetry }) {
@@ -52,7 +52,7 @@ function InsightsSection({ insights, loading, onRetry }) {
     
     setIsGeneratingCustom(true);
     try {
-      const res = await axios.post(
+      const res = await api.post(
         "/openai/custom-insight",
         { prompt: customPrompt },
         { headers: authHeader() }

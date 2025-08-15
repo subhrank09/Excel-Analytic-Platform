@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const instance = axios.create({
+console.log(process.env.REACT_APP_API_URL);
+
+export const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
   withCredentials: true,
 });
+
+console.log(instance.defaults.baseURL);
 
 instance.interceptors.request.use(config => {
   const adminToken = localStorage.getItem('adminToken');
@@ -14,5 +18,3 @@ instance.interceptors.request.use(config => {
   }
   return config;
 });
-
-export default instance;

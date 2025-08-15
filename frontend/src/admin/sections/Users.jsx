@@ -41,7 +41,7 @@
 
 
   import React, { useEffect, useState } from "react";
-  import axios from "../../api/axios"; // Adjust the import if your axios instance is elsewhere
+  import {api} from "../../api/axios"; // Adjust the import if your axios instance is elsewhere
 
   function Users() {
     const [users, setUsers] = useState([]);
@@ -56,7 +56,7 @@
       const fetchUsers = async () => {
         try {
           setLoading(true);
-          const res = await axios.get("/admin/users");
+          const res = await api.get("/admin/users");
           setUsers(res.data.users);
           setLoading(false);
         } catch (err) {
@@ -80,7 +80,7 @@
       if (!window.confirm("Are you sure you want to delete this user?")) return;
       setDeleting(userId);
       try {
-        await axios.delete(`/admin/users/${userId}`);
+        await api.delete(`/admin/users/${userId}`);
         setUsers((prev) => prev.filter((u) => u._id !== userId));
         setSuccess("User deleted successfully.");
         setError("");
